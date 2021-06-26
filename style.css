@@ -3,3 +3,30 @@
   margin: 0;
   padding: 0;
 }
+
+.btnDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.btn {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.btnDivPart {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background-color: rgb(100, 100, 255);
+}
+
+.editBtn {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  border: 1px solid #222;
+}

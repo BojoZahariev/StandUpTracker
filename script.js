@@ -8,11 +8,11 @@ let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem
 localStorage.setItem('items', JSON.stringify(itemsArray));
 const data = JSON.parse(localStorage.getItem('items'));
 
-const liMaker = (text) => {
-  const li = document.createElement('li');
-  li.textContent = text;
-  ul.appendChild(li);
-}
+// const liMaker = (text) => {
+//   const li = document.createElement('li');
+//   li.textContent = text;
+//   ul.appendChild(li);
+// }
 
 // form.addEventListener('submit', function (e) {
 //   e.preventDefault();
@@ -27,8 +27,8 @@ const liMaker = (text) => {
 
 button.addEventListener('click', function () {
   localStorage.clear();
-  while (ul.firstChild) {
-    ul.removeChild(ul.firstChild)
+  while (btnDiv.firstChild) {
+    btnDiv.removeChild(btnDiv.firstChild)
   }
 });
 /////////////////////////////////////////////////
@@ -48,6 +48,7 @@ form.addEventListener('submit', function (e) {
   localStorage.setItem('items', JSON.stringify(itemsArray))
   divMaker(input.value);
   input.value = '';
+  console.log('sub');
 });
 
 
@@ -65,23 +66,32 @@ const divMaker = (text) => {
   editBtn.textContent = 'Edit';
   btnDivPart.appendChild(editBtn);
 
-
   content.textContent = text;
-  myFunc();
+
+  btn.style.backgroundColor = 'rgb(100, 100, 255)' //blue
+
+  btn.addEventListener("click", ()=> { 
+    console.log('cli');
+    if(btn.style.backgroundColor === 'rgb(255, 255, 255)') { //white
+       btn.style.backgroundColor = 'rgb(100, 100, 255)';//blue
+    }else{
+      btn.style.backgroundColor = 'rgb(255, 255, 255)';
+    }
+  });
+ // myFunc();
 }
 
-data.forEach((item) => {
-  divMaker(item);
-});
+
 
 function myFunc() {
   var els = document.getElementsByClassName("btn");
   var elsArr = Array.from(els);
   elsArr.forEach((el) => {
-  el.style.backgroundColor = 'rgb(100, 100, 255)'
+  el.style.backgroundColor = 'rgb(100, 100, 255)' //blue
    el.addEventListener("click", ()=> { 
-     if(el.style.backgroundColor === 'rgb(255, 255, 255)') {
-        el.style.backgroundColor = 'rgb(100, 100, 255)';
+     console.log('cli');
+     if(el.style.backgroundColor === 'rgb(255, 255, 255)') { //white
+        el.style.backgroundColor = 'rgb(100, 100, 255)';//blue
      }else{
        el.style.backgroundColor = 'rgb(255, 255, 255)';
      }
@@ -109,3 +119,6 @@ function rand(arr) {
 }
 
 
+data.forEach((item) => {
+  divMaker(item);
+});

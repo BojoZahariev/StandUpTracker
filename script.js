@@ -3,6 +3,7 @@ const ul = document.querySelector('ul');
 const button = document.querySelector('button');
 const input = document.getElementById('item');
 const btnDiv = document.getElementById('btnDiv');
+const meBtn = document.getElementById('meBtn');
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -43,12 +44,13 @@ button.addEventListener('click', function () {
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  
+  if(input.value !== '') {
   itemsArray.push(input.value)
   localStorage.setItem('items', JSON.stringify(itemsArray))
   divMaker(input.value);
   input.value = '';
-  console.log('sub');
+ 
+  }
 });
 
 
@@ -71,7 +73,7 @@ const divMaker = (text) => {
   btn.style.backgroundColor = 'rgb(100, 100, 255)' //blue
 
   btn.addEventListener("click", ()=> { 
-    console.log('cli');
+    
     if(btn.style.backgroundColor === 'rgb(255, 255, 255)') { //white
        btn.style.backgroundColor = 'rgb(100, 100, 255)';//blue
     }else{
@@ -81,25 +83,10 @@ const divMaker = (text) => {
  // myFunc();
 }
 
-
-
-function myFunc() {
+meBtn.addEventListener("click", ()=> { 
   var els = document.getElementsByClassName("btn");
   var elsArr = Array.from(els);
-  elsArr.forEach((el) => {
-  el.style.backgroundColor = 'rgb(100, 100, 255)' //blue
-   el.addEventListener("click", ()=> { 
-     console.log('cli');
-     if(el.style.backgroundColor === 'rgb(255, 255, 255)') { //white
-        el.style.backgroundColor = 'rgb(100, 100, 255)';//blue
-     }else{
-       el.style.backgroundColor = 'rgb(255, 255, 255)';
-     }
-
-
-  // ME
-  if(elsArr.indexOf(el) === 0) {
-     let remainings = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
+  let remainings = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
      remainings.forEach((el) => {
        el.style.backgroundColor = 'rgb(100, 100, 255)';
      });
@@ -107,11 +94,39 @@ function myFunc() {
      if(remainings.length > 0) {
     remainings[rand(remainings)].style.backgroundColor = 'red'
      }
-  }
-     });
-   
 });
-}
+
+
+
+// function myFunc() {
+//   var els = document.getElementsByClassName("btn");
+//   var elsArr = Array.from(els);
+//   elsArr.forEach((el) => {
+//   el.style.backgroundColor = 'rgb(100, 100, 255)' //blue
+//    el.addEventListener("click", ()=> { 
+//      console.log('cli');
+//      if(el.style.backgroundColor === 'rgb(255, 255, 255)') { //white
+//         el.style.backgroundColor = 'rgb(100, 100, 255)';//blue
+//      }else{
+//        el.style.backgroundColor = 'rgb(255, 255, 255)';
+//      }
+
+
+//   // ME
+//   if(elsArr.indexOf(el) === 0) {
+//      let remainings = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
+//      remainings.forEach((el) => {
+//        el.style.backgroundColor = 'rgb(100, 100, 255)';
+//      });
+     
+//      if(remainings.length > 0) {
+//     remainings[rand(remainings)].style.backgroundColor = 'red'
+//      }
+//   }
+//      });
+   
+// });
+// }
 
 
 function rand(arr) {

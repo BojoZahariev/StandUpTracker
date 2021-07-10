@@ -13,7 +13,15 @@
 .btnMe {
   width: 100px;
   height: 100px;
+  background-color: rgb(100, 100, 255);
   margin: 10px;
+}
+
+#meBtn {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(100, 100, 255);
 }
 
 .btn {

@@ -44,3 +44,10 @@
   z-index: 999;
   border: 1px solid #222;
 }
+
+.deleteBtn {
+  position: absolute;
+  top: 50px;
+  z-index: 999;
+  border: 1px solid #222;
+}

@@ -9,21 +9,6 @@ let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem
 localStorage.setItem('items', JSON.stringify(itemsArray));
 const data = JSON.parse(localStorage.getItem('items'));
 
-// const liMaker = (text) => {
-//   const li = document.createElement('li');
-//   li.textContent = text;
-//   ul.appendChild(li);
-// }
-
-// form.addEventListener('submit', function (e) {
-//   e.preventDefault();
-
-//   itemsArray.push(input.value)
-//   localStorage.setItem('items', JSON.stringify(itemsArray))
-//   liMaker(input.value);
-//   input.value = '';
-// });
-
 
 
 button.addEventListener('click', function () {
@@ -32,29 +17,23 @@ button.addEventListener('click', function () {
     btnDiv.removeChild(btnDiv.firstChild)
   }
 });
-/////////////////////////////////////////////////
 
-// class Colleague {
-//   constructor(name) {
-//     this.name = name;
-    
-//   }
-// }
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   if(input.value !== '') {
   itemsArray.push(input.value)
-  localStorage.setItem('items', JSON.stringify(itemsArray))
-  divMaker(input.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  console.log(itemsArray);
+  divMaker(input.value, itemsArray.indexOf(input.value));
   input.value = '';
  
   }
 });
 
 
-const divMaker = (text) => {
+const divMaker = (text, index) => {
   const btnDivPart = document.createElement('div');
   btnDivPart.classList.add('btnDivPart');
   btnDiv.appendChild(btnDivPart);
@@ -67,8 +46,19 @@ const divMaker = (text) => {
   editBtn.classList.add('editBtn');
   editBtn.textContent = 'Edit';
   btnDivPart.appendChild(editBtn);
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('deleteBtn');
+  deleteBtn.textContent = 'Delete';
+  btnDivPart.appendChild(deleteBtn);
 
   content.textContent = text;
+
+  deleteBtn.addEventListener("click", ()=> { 
+   btnDivPart.remove();
+   itemsArray.splice(index, 1);
+   localStorage.setItem('items', JSON.stringify(itemsArray));
+  });
+  
 
   btn.style.backgroundColor = 'rgb(100, 100, 255)' //blue
 
@@ -80,7 +70,7 @@ const divMaker = (text) => {
       btn.style.backgroundColor = 'rgb(255, 255, 255)';
     }
   });
- // myFunc();
+ 
 }
 
 meBtn.addEventListener("click", ()=> { 
@@ -95,6 +85,8 @@ meBtn.addEventListener("click", ()=> {
     remainings[rand(remainings)].style.backgroundColor = 'red'
      }
 });
+
+
 
 
 

@@ -4,6 +4,10 @@ const button = document.querySelector('button');
 const input = document.getElementById('item');
 const btnDiv = document.getElementById('btnDiv');
 const meBtn = document.getElementById('meBtn');
+const editForm = document.getElementById('editForm');
+const newForm = document.getElementById('newForm');
+const item2 = document.getElementById('item2');
+
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -32,6 +36,21 @@ form.addEventListener('submit', function (e) {
   }
 });
 
+// form2.addEventListener('submit', function (e) {
+//   e.preventDefault();
+
+  
+//   itemsArray.push(input2.value);
+
+
+//   localStorage.setItem('items', JSON.stringify(itemsArray));
+ 
+ 
+  
+ 
+  
+// });
+
 
 const divMaker = (text, index) => {
   const btnDivPart = document.createElement('div');
@@ -58,6 +77,11 @@ const divMaker = (text, index) => {
    itemsArray.splice(index, 1);
    localStorage.setItem('items', JSON.stringify(itemsArray));
   });
+
+  editBtn.addEventListener("click", ()=> { 
+    editForm.style.display = 'block';
+    item2.value = text;
+   });
   
 
   btn.style.backgroundColor = 'rgb(100, 100, 255)' //blue

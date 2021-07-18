@@ -2,16 +2,19 @@ const form = document.querySelector('form');
 const ul = document.querySelector('ul');
 const button = document.querySelector('button');
 const input = document.getElementById('item');
+const input2 = document.getElementById('item2');
 const btnDiv = document.getElementById('btnDiv');
 const meBtn = document.getElementById('meBtn');
 const editForm = document.getElementById('editForm');
 const newForm = document.getElementById('newForm');
 const item2 = document.getElementById('item2');
+const addBtn = document.getElementById('addBtn');
+var ind;
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 localStorage.setItem('items', JSON.stringify(itemsArray));
-const data = JSON.parse(localStorage.getItem('items'));
+var data = JSON.parse(localStorage.getItem('items'));
 
 
 
@@ -23,33 +26,37 @@ button.addEventListener('click', function () {
 });
 
 
-form.addEventListener('submit', function (e) {
+newForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
   if(input.value !== '') {
   itemsArray.push(input.value)
   localStorage.setItem('items', JSON.stringify(itemsArray));
-  console.log(itemsArray);
+  
   divMaker(input.value, itemsArray.indexOf(input.value));
   input.value = '';
  
   }
 });
 
-// form2.addEventListener('submit', function (e) {
-//   e.preventDefault();
+editForm.addEventListener('submit', function (e) {
+  e.preventDefault();
 
-  
-//   itemsArray.push(input2.value);
+  if(input2.value !== '') {
+  itemsArray.splice(ind,1,input2.value);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
 
+  while (btnDiv.firstChild) {
+    btnDiv.removeChild(btnDiv.firstChild)
+  }
+  data = JSON.parse(localStorage.getItem('items'));
+  data.forEach((item) => {
+    divMaker(item);
+  });
+  }
 
-//   localStorage.setItem('items', JSON.stringify(itemsArray));
- 
- 
-  
- 
-  
-// });
+  editForm.style.display = 'none';
+});
 
 
 const divMaker = (text, index) => {
@@ -80,6 +87,8 @@ const divMaker = (text, index) => {
 
   editBtn.addEventListener("click", ()=> { 
     editForm.style.display = 'block';
+    ind = itemsArray.indexOf(text);
+    console.log(ind);
     item2.value = text;
    });
   
@@ -100,18 +109,20 @@ const divMaker = (text, index) => {
 meBtn.addEventListener("click", ()=> { 
   var els = document.getElementsByClassName("btn");
   var elsArr = Array.from(els);
-  let remainings = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
-     remainings.forEach((el) => {
+  let remain = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
+     remain.forEach((el) => {
        el.style.backgroundColor = 'rgb(100, 100, 255)';
      });
      
-     if(remainings.length > 0) {
-    remainings[rand(remainings)].style.backgroundColor = 'red'
+     if(remain.length > 0) {
+    remain[rand(remain)].style.backgroundColor = 'red'
      }
 });
 
 
-
+addBtn.addEventListener("click", ()=> { 
+  newForm.style.display = 'block';
+});
 
 
 // function myFunc() {
@@ -130,13 +141,13 @@ meBtn.addEventListener("click", ()=> {
 
 //   // ME
 //   if(elsArr.indexOf(el) === 0) {
-//      let remainings = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
-//      remainings.forEach((el) => {
+//      let remain = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
+//      remain.forEach((el) => {
 //        el.style.backgroundColor = 'rgb(100, 100, 255)';
 //      });
      
-//      if(remainings.length > 0) {
-//     remainings[rand(remainings)].style.backgroundColor = 'red'
+//      if(remain.length > 0) {
+//     remain[rand(remain)].style.backgroundColor = 'red'
 //      }
 //   }
 //      });

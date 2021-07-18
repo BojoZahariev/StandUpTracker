@@ -1,9 +1,9 @@
 const form = document.querySelector('form');
 const ul = document.querySelector('ul');
-const button = document.querySelector('button');
+const clearBtn = document.querySelector('#clearBtn');
 const input = document.getElementById('item');
 const input2 = document.getElementById('item2');
-const btnDiv = document.getElementById('btnDiv');
+const btnDiv = document.getElementById('newOnes');
 const meBtn = document.getElementById('meBtn');
 const editForm = document.getElementById('editForm');
 const newForm = document.getElementById('newForm');
@@ -17,8 +17,15 @@ localStorage.setItem('items', JSON.stringify(itemsArray));
 var data = JSON.parse(localStorage.getItem('items'));
 
 
+// the constructor
+class Colleague {
+  constructor(name, uniqueN) {
+    this.name = name;
+    this.uniqueN = uniqueN;
+  }
+}
 
-button.addEventListener('click', function () {
+clearBtn.addEventListener('click', function () {
   localStorage.clear();
   while (btnDiv.firstChild) {
     btnDiv.removeChild(btnDiv.firstChild)
@@ -30,12 +37,14 @@ newForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
   if(input.value !== '') {
-  itemsArray.push(input.value)
+  let now = Date.now();
+  let colleagueNew = new Colleague(input.value, now);
+  itemsArray.push(colleagueNew);
   localStorage.setItem('items', JSON.stringify(itemsArray));
   
-  divMaker(input.value, itemsArray.indexOf(input.value));
+  divMaker(colleagueNew.name, colleagueNew.uniqueN);
   input.value = '';
- 
+  newForm.style.display = 'none';
   }
 });
 
@@ -43,7 +52,10 @@ editForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
   if(input2.value !== '') {
-  itemsArray.splice(ind,1,input2.value);
+  // itemsArray.splice(ind,1,input2.value);
+  
+ itemsArray[ind].name = input2.value;
+  
   localStorage.setItem('items', JSON.stringify(itemsArray));
 
   while (btnDiv.firstChild) {
@@ -51,7 +63,7 @@ editForm.addEventListener('submit', function (e) {
   }
   data = JSON.parse(localStorage.getItem('items'));
   data.forEach((item) => {
-    divMaker(item);
+    divMaker(item.name,item.uniqueN);
   });
   }
 
@@ -59,7 +71,9 @@ editForm.addEventListener('submit', function (e) {
 });
 
 
-const divMaker = (text, index) => {
+const divMaker = (text, number) => {
+  let currentIndex = itemsArray.findIndex(i => i.uniqueN === number);
+
   const btnDivPart = document.createElement('div');
   btnDivPart.classList.add('btnDivPart');
   btnDiv.appendChild(btnDivPart);
@@ -81,14 +95,14 @@ const divMaker = (text, index) => {
 
   deleteBtn.addEventListener("click", ()=> { 
    btnDivPart.remove();
-   itemsArray.splice(index, 1);
+   
+   itemsArray.splice(currentIndex, 1);
    localStorage.setItem('items', JSON.stringify(itemsArray));
   });
 
   editBtn.addEventListener("click", ()=> { 
     editForm.style.display = 'block';
-    ind = itemsArray.indexOf(text);
-    console.log(ind);
+    ind = currentIndex;
     item2.value = text;
    });
   
@@ -162,5 +176,5 @@ function rand(arr) {
 
 
 data.forEach((item) => {
-  divMaker(item);
+  divMaker(item.name, item.uniqueN);
 });

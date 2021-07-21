@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  background-color: #d5f2e3;
+}
+
 #btnDiv,
 #newOnes {
   display: flex;
@@ -15,17 +19,22 @@
 #addNewDiv {
   width: 100px;
   height: 100px;
-  background-color: rgb(100, 100, 255);
+  background-color: #0892a5;
   margin: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #222;
+  border-radius: 10px; */
 }
 
-#meBtn,
 #addBtn {
   font-size: 40px;
   cursor: pointer;
   width: 100%;
   height: 100%;
-  background-color: rgb(100, 100, 255);
+  background-color: #0892a5;
 }
 
 .btn {
@@ -33,13 +42,20 @@
   width: 100%;
   height: 100%;
   background-color: rgb(100, 100, 255);
+  border-radius: 10px;
 }
 
 .btnDivPart {
   position: relative;
-  width: 100px;
-  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
   margin: 10px;
+  border: 1px solid #222;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .editBtn {

@@ -77,11 +77,11 @@ const divMaker = (text, number) => {
   const btnDivPart = document.createElement('div');
   btnDivPart.classList.add('btnDivPart');
   btnDiv.appendChild(btnDivPart);
-  const btn = document.createElement('button');
-  btn.classList.add('btn');
-  btnDivPart.appendChild(btn);
+  // const btn = document.createElement('button');
+  // btn.classList.add('btn');
+  // btnDivPart.appendChild(btn);
   const content = document.createElement('p');
-  btn.appendChild(content)
+  btnDivPart.appendChild(content)
   const editBtn = document.createElement('button');
   editBtn.classList.add('editBtn');
   editBtn.textContent = 'Edit';
@@ -107,29 +107,29 @@ const divMaker = (text, number) => {
    });
   
 
-  btn.style.backgroundColor = 'rgb(100, 100, 255)' //blue
+   btnDivPart.style.backgroundColor = 'rgb(8, 146, 165)' //blue
 
-  btn.addEventListener("click", ()=> { 
+   btnDivPart.addEventListener("click", ()=> { 
     
-    if(btn.style.backgroundColor === 'rgb(255, 255, 255)') { //white
-       btn.style.backgroundColor = 'rgb(100, 100, 255)';//blue
+    if(btnDivPart.style.backgroundColor === 'rgb(250, 159, 66)') { //white
+      btnDivPart.style.backgroundColor = 'rgb(8, 146, 165)';//blue
     }else{
-      btn.style.backgroundColor = 'rgb(255, 255, 255)';
+      btnDivPart.style.backgroundColor = 'rgb(250, 159, 66)';
     }
   });
  
 }
 
 meBtn.addEventListener("click", ()=> { 
-  var els = document.getElementsByClassName("btn");
+  var els = document.getElementsByClassName("btnDivPart");
   var elsArr = Array.from(els);
-  let remain = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
+  let remain = elsArr.filter(element => element.style.backgroundColor !== 'rgb(250, 159, 66)');
      remain.forEach((el) => {
-       el.style.backgroundColor = 'rgb(100, 100, 255)';
+       el.style.backgroundColor = 'rgb(8, 146, 165)';
      });
      
      if(remain.length > 0) {
-    remain[rand(remain)].style.backgroundColor = 'red'
+    remain[rand(remain)].style.backgroundColor = 'rgb(186, 45, 11)';
      }
 });
 

@@ -7,7 +7,8 @@ const btnDiv = document.getElementById('newOnes');
 const meBtn = document.getElementById('meBtn');
 const editForm = document.getElementById('editForm');
 const newForm = document.getElementById('newForm');
-const cancel = document.getElementById('cancel');
+const cancelNewForm = document.getElementById('cancelNewForm');
+const cancelEdit = document.getElementById('cancelEdit');
 const item2 = document.getElementById('item2');
 const addBtn = document.getElementById('addBtn');
 var ind;
@@ -49,9 +50,14 @@ newForm.addEventListener('submit', function (e) {
   }
 });
 
-cancel.addEventListener('click', function () {
+cancelNewForm.addEventListener('click', function () {
   newForm.reset();
   newForm.style.display = 'none';
+});
+
+cancelEdit.addEventListener('click', function () {
+ 
+  editForm.style.display = 'none';
 });
 
 editForm.addEventListener('submit', function (e) {
@@ -80,9 +86,12 @@ editForm.addEventListener('submit', function (e) {
 const divMaker = (text, number) => {
   let currentIndex = itemsArray.findIndex(i => i.uniqueN === number);
 
+  const btnParent = document.createElement('div');
+  btnParent.classList.add('btnParent');
   const btnDivPart = document.createElement('div');
   btnDivPart.classList.add('btnDivPart');
-  btnDiv.appendChild(btnDivPart);
+  btnParent.appendChild(btnDivPart);
+  btnDiv.appendChild(btnParent);
   // const btn = document.createElement('button');
   // btn.classList.add('btn');
   // btnDivPart.appendChild(btn);
@@ -92,12 +101,12 @@ const divMaker = (text, number) => {
   editBtn.classList.add('editBtn');
   editBtn.classList.add('funcButtons');
   editBtn.textContent = 'Edit';
-  btnDivPart.appendChild(editBtn);
+  btnParent.appendChild(editBtn);
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteBtn');
   deleteBtn.classList.add('funcButtons');
   deleteBtn.textContent = 'Delete';
-  btnDivPart.appendChild(deleteBtn);
+  btnParent.appendChild(deleteBtn);
 
   content.textContent = text;
 

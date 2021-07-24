@@ -17,12 +17,11 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btnMe,
 #addNewDiv {
-  width: 100px;
-  height: 100px;
   background-color: #0892a5;
   margin: 10px;
   cursor: pointer;
@@ -31,6 +30,20 @@ html {
   align-items: center;
   /* border: 1px solid #222;
   border-radius: 10px; */
+}
+
+.btnMe {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border-radius: 10px;
+  border: 2px solid #054a91;
+  color: #fff;
+}
+
+#addNewDiv {
+  width: 100px;
+  height: 100px;
 }
 
 #addBtn {
@@ -42,12 +55,18 @@ html {
   z-index: 9;
 }
 
-.btn {
+/* .btn {
   cursor: pointer;
   width: 100%;
   height: 100%;
   background-color: rgb(100, 100, 255);
   border-radius: 10px;
+  color: #fff;
+} */
+
+.btnParent {
+  position: relative;
+  margin: 10px;
 }
 
 .btnDivPart {
@@ -57,8 +76,8 @@ html {
   align-items: center;
   width: 150px;
   height: 150px;
-  margin: 10px;
-  border: 1px solid #222;
+
+  border: 2px solid #054a91;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -71,6 +90,18 @@ html {
   cursor: pointer;
   border-radius: 10px;
   padding: 5px;
+  width: 60px;
+  background: #ffc09f;
+  border: 2px solid #222;
+  user-select: none;
+
+  cursor: pointer;
+  transition: transform 0.1s cubic-bezier(0.5, 0, 0.5, 1), box-shadow 0.2s;
+}
+
+.funcButtons:active {
+  transform: scale(0.9) translateY(5%);
+  transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
 }
 
 .editBtn {
@@ -88,22 +119,39 @@ html {
 
 #newForm {
   position: absolute;
-  width: 0px;
-  right: 0;
-  animation-name: example;
-  animation-duration: 2s;
+  width: 250px;
+  right: -150px;
+  animation-name: popOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  /* z-index: 10; */
 }
 
-/* @keyframes example {
+@keyframes popOut {
   from {
-    width: 50px;
-    right: 0;
+    right: -150px;
   }
   to {
-    width: 300px;
-    right: 0;
+    right: -260px;
   }
-} */
+}
+
+input {
+  text-transform: uppercase;
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+
+  padding: 3px 20px;
+
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #92b192, inset -0.2rem -0.2rem 0.5rem #e1f3e1;
+  background: #fff;
+  color: #1c3144;
+  caret-color: #1c3144;
+  border: 2px solid #054a91;
+}
 
 #addNewDiv {
   order: 1;

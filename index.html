@@ -39,8 +39,11 @@
   
             <form id="newForm"> 
               <input id="item" type="text" placeholder="Colleague name">
-              <button type="submit">Submit</button>
-              <button id="cancel" type="button">Cancel</button>
+              <div>
+                <button type="submit">Submit</button>
+                <button id="cancelNewForm" type="button">Cancel</button>
+              </div>
+              
             </form>
           </div>
         </div>
@@ -50,7 +53,10 @@
 
         <form id="editForm">
           <input id="item2" type="text">
-          <button type="submit">Submit</button>
+          <div>
+            <button type="submit">Submit</button>
+            <button id="cancelEdit" type="button">Cancel</button>
+          </div>
         </form>
 
         <button id="clearBtn">Clear All</button>

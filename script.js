@@ -7,6 +7,7 @@ const btnDiv = document.getElementById('newOnes');
 const meBtn = document.getElementById('meBtn');
 const editForm = document.getElementById('editForm');
 const newForm = document.getElementById('newForm');
+const cancel = document.getElementById('cancel');
 const item2 = document.getElementById('item2');
 const addBtn = document.getElementById('addBtn');
 var ind;
@@ -48,6 +49,11 @@ newForm.addEventListener('submit', function (e) {
   }
 });
 
+cancel.addEventListener('click', function () {
+  newForm.reset();
+  newForm.style.display = 'none';
+});
+
 editForm.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -84,10 +90,12 @@ const divMaker = (text, number) => {
   btnDivPart.appendChild(content)
   const editBtn = document.createElement('button');
   editBtn.classList.add('editBtn');
+  editBtn.classList.add('funcButtons');
   editBtn.textContent = 'Edit';
   btnDivPart.appendChild(editBtn);
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteBtn');
+  deleteBtn.classList.add('funcButtons');
   deleteBtn.textContent = 'Delete';
   btnDivPart.appendChild(deleteBtn);
 

@@ -8,7 +8,10 @@
     <!--
     <link rel="icon" href="images/favicon.png" />
     -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css" />
 
     <title>Stand Up Tracker</title>
@@ -38,10 +41,10 @@
             </button>
   
             <form id="newForm"> 
-              <input id="item" type="text" placeholder="Colleague name">
-              <div>
-                <button type="submit">Submit</button>
-                <button id="cancelNewForm" type="button">Cancel</button>
+              <input id="item" type="text" placeholder="Colleague's name">
+              <div class="formBtnsDiv">  
+                <button class="formBtns" type="submit">Submit</button>
+                <button class="formBtns" id="cancelNewForm" type="button">Cancel</button>
               </div>
               
             </form>
@@ -53,13 +56,13 @@
 
         <form id="editForm">
           <input id="item2" type="text">
-          <div>
-            <button type="submit">Submit</button>
-            <button id="cancelEdit" type="button">Cancel</button>
+          <div class="formBtnsDiv">
+            <button class="formBtns" type="submit">Submit</button>
+            <button class="formBtns" id="cancelEdit" type="button">Cancel</button>
           </div>
         </form>
 
-        <button id="clearBtn">Clear All</button>
+        <button id="clearBtn">Delete All</button>
     </div>
 
     <script src="script.js"></script>

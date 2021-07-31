@@ -111,7 +111,7 @@ const divMaker = (text, number) => {
   content.textContent = text;
 
   deleteBtn.addEventListener("click", ()=> { 
-   btnDivPart.remove();
+   btnParent.remove();
    
    itemsArray.splice(currentIndex, 1);
    localStorage.setItem('items', JSON.stringify(itemsArray));

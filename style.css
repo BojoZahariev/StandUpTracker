@@ -6,10 +6,16 @@
 
 html {
   background-color: #d5f2e3;
+  font-family: 'Prompt', sans-serif;
 }
 
 .main {
-  padding: 80px;
+  padding: 10px 80px;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
 }
 
 #btnDiv,
@@ -20,9 +26,12 @@ html {
   align-items: center;
 }
 
+#btnDiv {
+  margin-top: 50px;
+}
+
 .btnMe,
 #addNewDiv {
-  background-color: #0892a5;
   margin: 10px;
   cursor: pointer;
   display: flex;
@@ -33,12 +42,17 @@ html {
 }
 
 .btnMe {
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 50%;
   border: 2px solid #054a91;
   color: #fff;
+  background-color: #ba2d0b;
+}
+
+.btnMe:active {
+  transform: translateY(5px);
 }
 
 #addNewDiv {
@@ -53,6 +67,10 @@ html {
   height: 100%;
   background-color: #0892a5;
   z-index: 9;
+}
+
+#addBtn:active {
+  transform: translateY(2px);
 }
 
 /* .btn {
@@ -104,6 +122,26 @@ html {
   transition-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
 }
 
+.formBtnsDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+}
+
+.formBtns {
+  border: 1px solid #222;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px;
+  width: 60px;
+  background: #ffc09f;
+  border: 2px solid #222;
+  user-select: none;
+
+  cursor: pointer;
+  transition: transform 0.1s cubic-bezier(0.5, 0, 0.5, 1), box-shadow 0.2s;
+}
+
 .editBtn {
   left: 0;
 }
@@ -115,11 +153,12 @@ html {
 #editForm,
 #newForm {
   display: none;
+  width: 250px;
 }
 
 #newForm {
   position: absolute;
-  width: 250px;
+
   right: -150px;
   animation-name: popOut;
   animation-duration: 1s;
@@ -138,7 +177,7 @@ html {
 
 input {
   text-transform: uppercase;
-  width: 200px;
+  width: 250px;
   height: 50px;
   border: none;
   border-radius: 15px;
@@ -160,6 +199,15 @@ input {
 
 #clearBtn {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
+  border: 1px solid #222;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100px;
+  background: #ffc09f;
+  border: 2px solid #222;
+  user-select: none;
+  cursor: pointer;
 }

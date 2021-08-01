@@ -119,6 +119,7 @@ const divMaker = (text, number) => {
 
   editBtn.addEventListener("click", ()=> { 
     editForm.style.display = 'block';
+    btnParent.appendChild(editForm);
     ind = currentIndex;
     item2.value = text;
    });

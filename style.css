@@ -156,6 +156,11 @@ p {
   width: 250px;
 }
 
+#editForm {
+  position: absolute;
+  z-index: 999;
+}
+
 #newForm {
   position: absolute;
 

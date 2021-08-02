@@ -13,27 +13,15 @@ const item2 = document.getElementById('item2');
 const addBtn = document.getElementById('addBtn');
 const helpBtn = document.getElementById('help');
 const instructions = document.getElementById('instructions');
+const joke = document.getElementById('joke');
+const joke2 = document.getElementById('joke2');
+
 var ind;
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 localStorage.setItem('items', JSON.stringify(itemsArray));
 var data = JSON.parse(localStorage.getItem('items'));
-
-
-fetch("https://dad-jokes.p.rapidapi.com/random/joke/png", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3",
-		"x-rapidapi-host": "dad-jokes.p.rapidapi.com"
-	}
-})
-.then(response => {
-	console.log(response.json());
-})
-.catch(err => {
-	console.error(err);
-});
 
 
 getTodayJoke = async () => {
@@ -46,10 +34,14 @@ getTodayJoke = async () => {
       }
     });
     const fetchedData = await response.json();
+joke.textContent = fetchedData.body.setup;
+joke2.textContent = fetchedData.body.punchline;
 
-    console.log(fetchedData);
   } catch (err) {}
 };
+
+getTodayJoke();
+
 
 // the constructor
 class Colleague {

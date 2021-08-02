@@ -11,6 +11,8 @@ const cancelNewForm = document.getElementById('cancelNewForm');
 const cancelEdit = document.getElementById('cancelEdit');
 const item2 = document.getElementById('item2');
 const addBtn = document.getElementById('addBtn');
+const helpBtn = document.getElementById('help');
+const instructions = document.getElementById('instructions');
 var ind;
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
@@ -19,6 +21,36 @@ localStorage.setItem('items', JSON.stringify(itemsArray));
 var data = JSON.parse(localStorage.getItem('items'));
 
 
+fetch("https://dad-jokes.p.rapidapi.com/random/joke/png", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3",
+		"x-rapidapi-host": "dad-jokes.p.rapidapi.com"
+	}
+})
+.then(response => {
+	console.log(response.json());
+})
+.catch(err => {
+	console.error(err);
+});
+
+
+getTodayJoke = async () => {
+  try {
+    const response = await fetch("https://dad-jokes.p.rapidapi.com/random/joke/png", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-key": "3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3",
+        "x-rapidapi-host": "dad-jokes.p.rapidapi.com"
+      }
+    });
+    const fetchedData = await response.json();
+
+    console.log(fetchedData);
+  } catch (err) {}
+};
+
 // the constructor
 class Colleague {
   constructor(name, uniqueN) {
@@ -26,6 +58,17 @@ class Colleague {
     this.uniqueN = uniqueN;
   }
 }
+
+helpBtn.addEventListener('click', function () {
+  if(instructions.style.display !== 'block'){
+    instructions.style.display = 'block';
+    helpBtn.innerHTML = 'close help';
+  }else{
+    instructions.style.display = 'none';
+    helpBtn.innerHTML = 'click for help';
+  }
+ 
+});
 
 clearBtn.addEventListener('click', function () {
   localStorage.clear();

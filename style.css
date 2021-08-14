@@ -60,6 +60,21 @@ p {
   border: 1px solid #222;
 }
 
+#moreJokes {
+  position: absolute;
+  right: 10px;
+  bottom: -25px;
+
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 5px;
+
+  background: #0892a5;
+  user-select: none;
+  cursor: pointer;
+  font-family: 'Prompt', sans-serif;
+}
+
 #instructions p {
   text-align: left;
   font-size: 16px;
@@ -257,7 +272,6 @@ input {
   bottom: 0;
   right: 0;
   border: 1px solid #222;
-  cursor: pointer;
   border-radius: 10px;
   padding: 5px;
   width: 100px;

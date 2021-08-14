@@ -15,6 +15,8 @@ const helpBtn = document.getElementById('help');
 const instructions = document.getElementById('instructions');
 const joke = document.getElementById('joke');
 const joke2 = document.getElementById('joke2');
+const moreJokes = document.getElementById('moreJokes');
+var jokesCount = 0;
 
 var ind;
 
@@ -36,8 +38,18 @@ getTodayJoke = async () => {
     const fetchedData = await response.json();
 joke.textContent = fetchedData.body.setup;
 joke2.textContent = fetchedData.body.punchline;
+jokesCount++
+ 
+if(jokesCount >= 5) {
+  joke.textContent = 'Enough jokes!'
+  joke2.textContent = 'Go back to work!';
+}
 
-  } catch (err) {}
+  } catch (err) {
+    joke.textContent = 'No jokes today!'
+    joke2.textContent = 'Go back to work!';
+
+  }
 };
 
 getTodayJoke();
@@ -50,6 +62,11 @@ class Colleague {
     this.uniqueN = uniqueN;
   }
 }
+
+
+moreJokes.addEventListener('click', function () {
+  getTodayJoke();
+});
 
 helpBtn.addEventListener('click', function () {
   if(instructions.style.display !== 'block'){
@@ -192,40 +209,13 @@ addBtn.addEventListener("click", ()=> {
 });
 
 
-// function myFunc() {
-//   var els = document.getElementsByClassName("btn");
-//   var elsArr = Array.from(els);
-//   elsArr.forEach((el) => {
-//   el.style.backgroundColor = 'rgb(100, 100, 255)' //blue
-//    el.addEventListener("click", ()=> { 
-//      console.log('cli');
-//      if(el.style.backgroundColor === 'rgb(255, 255, 255)') { //white
-//         el.style.backgroundColor = 'rgb(100, 100, 255)';//blue
-//      }else{
-//        el.style.backgroundColor = 'rgb(255, 255, 255)';
-//      }
 
-
-//   // ME
-//   if(elsArr.indexOf(el) === 0) {
-//      let remain = elsArr.filter(element => element.style.backgroundColor !== 'rgb(255, 255, 255)');
-//      remain.forEach((el) => {
-//        el.style.backgroundColor = 'rgb(100, 100, 255)';
-//      });
-     
-//      if(remain.length > 0) {
-//     remain[rand(remain)].style.backgroundColor = 'red'
-//      }
-//   }
-//      });
-   
-// });
-// }
 
 
 function rand(arr) {
   return Math.floor(Math.random() * arr.length);
 }
+
 
 
 data.forEach((item) => {

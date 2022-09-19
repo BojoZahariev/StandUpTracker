@@ -57,9 +57,10 @@ getTodayJoke();
 
 // the constructor
 class Colleague {
-  constructor(name, uniqueN) {
+  constructor(name, uniqueN, onholiday) {
     this.name = name;
     this.uniqueN = uniqueN;
+    this.onholiday = onholiday;
   }
 }
 
@@ -92,11 +93,11 @@ newForm.addEventListener('submit', function (e) {
 
   if(input.value !== '') {
   let now = Date.now();
-  let colleagueNew = new Colleague(input.value, now);
+  let colleagueNew = new Colleague(input.value, now, 'No');
   itemsArray.push(colleagueNew);
   localStorage.setItem('items', JSON.stringify(itemsArray));
   
-  divMaker(colleagueNew.name, colleagueNew.uniqueN);
+  divMaker(colleagueNew.name, colleagueNew.uniqueN, colleagueNew.onholiday);
   input.value = '';
   newForm.style.display = 'none';
   }
@@ -127,7 +128,7 @@ editForm.addEventListener('submit', function (e) {
   }
   data = JSON.parse(localStorage.getItem('items'));
   data.forEach((item) => {
-    divMaker(item.name,item.uniqueN);
+    divMaker(item.name,item.uniqueN, item.onholiday);
   });
   }
 
@@ -135,7 +136,7 @@ editForm.addEventListener('submit', function (e) {
 });
 
 
-const divMaker = (text, number) => {
+const divMaker = (text, number, onholidayStatus) => {
   let currentIndex = itemsArray.findIndex(i => i.uniqueN === number);
 
   const btnParent = document.createElement('div');
@@ -148,17 +149,24 @@ const divMaker = (text, number) => {
   // btn.classList.add('btn');
   // btnDivPart.appendChild(btn);
   const content = document.createElement('p');
-  btnDivPart.appendChild(content)
+  btnDivPart.appendChild(content);
+
   const editBtn = document.createElement('button');
   editBtn.classList.add('editBtn');
   editBtn.classList.add('funcButtons');
   editBtn.textContent = 'Edit';
   btnParent.appendChild(editBtn);
+
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('deleteBtn');
   deleteBtn.classList.add('funcButtons');
   deleteBtn.textContent = 'Delete';
   btnParent.appendChild(deleteBtn);
+
+  const holBtn = document.createElement('button');
+  holBtn.classList.add('holBtn');
+  holBtn.textContent = 'Holiday';
+  btnParent.appendChild(holBtn);
 
   content.textContent = text;
 
@@ -175,16 +183,48 @@ const divMaker = (text, number) => {
     ind = currentIndex;
     item2.value = text;
    });
+
+   holBtn.addEventListener("click", ()=> { 
+    ind = currentIndex;
+    console.log(itemsArray[ind]);
+    if(itemsArray[ind].onholiday == 'Yes') {
+      itemsArray[ind].onholiday = 'No';
+    }else{
+      itemsArray[ind].onholiday = 'Yes';
+    }
+   
+   
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+
+    while (btnDiv.firstChild) {
+      btnDiv.removeChild(btnDiv.firstChild)
+    }
+    data = JSON.parse(localStorage.getItem('items'));
+    data.forEach((item) => {
+      divMaker(item.name,item.uniqueN,item.onholiday);
+    });
+
+   });
   
 
    btnDivPart.style.backgroundColor = 'rgb(8, 146, 165)' //blue
 
+   if(onholidayStatus == 'Yes'){
+    btnDivPart.style.backgroundColor = 'rgb(250, 159, 66)';
+    const umbrImg = document.createElement('img');
+    umbrImg.src = 'images/sun-umbrella.png'
+    umbrImg.classList.add('umbrImg');
+    btnParent.appendChild(umbrImg);
+  }else{
+    btnDivPart.style.backgroundColor = 'rgb(8, 146, 165)';
+  }
+
    btnDivPart.addEventListener("click", ()=> { 
     
-    if(btnDivPart.style.backgroundColor === 'rgb(250, 159, 66)') { //white
+    if(btnDivPart.style.backgroundColor === 'rgb(250, 159, 66)') { //orange
       btnDivPart.style.backgroundColor = 'rgb(8, 146, 165)';//blue
     }else{
-      btnDivPart.style.backgroundColor = 'rgb(250, 159, 66)';
+      btnDivPart.style.backgroundColor = 'rgb(250, 159, 66)';//orange
     }
   });
  
@@ -219,5 +259,5 @@ function rand(arr) {
 
 
 data.forEach((item) => {
-  divMaker(item.name, item.uniqueN);
+  divMaker(item.name, item.uniqueN, item.onholiday);
 });

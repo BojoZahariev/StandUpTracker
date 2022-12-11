@@ -305,3 +305,31 @@ input {
   user-select: none;
   cursor: pointer;
 }
+
+#gameBtn {
+  text-decoration: none;
+  border: 2px solid #fc9f5b;
+  padding: 10px 30px;
+  border-radius: 20px;
+  background-color: #124e78;
+  color: #fc9f5b;
+  font-size: 25px;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #124e78 0%, #78b9e7 50%, #124e78 100%);
+  transition: 1.5s;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  margin: 10px auto;
+  z-index: 99;
+  text-shadow: 2px 1px 2px #222;
+  font-family: 'Grandstander', cursive;
+}
+
+#gameBtn:active {
+  transform: scale(0.9);
+}
+
+#gameBtn:hover {
+  background-position: right center;
+}

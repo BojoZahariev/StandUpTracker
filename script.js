@@ -14,7 +14,7 @@ const addBtn = document.getElementById('addBtn');
 const helpBtn = document.getElementById('help');
 const instructions = document.getElementById('instructions');
 const joke = document.getElementById('joke');
-const joke2 = document.getElementById('joke2');
+// const joke2 = document.getElementById('joke2');
 const moreJokes = document.getElementById('moreJokes');
 var jokesCount = 0;
 
@@ -26,30 +26,58 @@ localStorage.setItem('items', JSON.stringify(itemsArray));
 var data = JSON.parse(localStorage.getItem('items'));
 
 
+
+console.log('here');
 getTodayJoke = async () => {
-  try {
-    const response = await fetch("https://dad-jokes.p.rapidapi.com/random/joke/png", {
-      "method": "GET",
-     headers: {
-		'X-RapidAPI-Key': '3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3',
-		'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
-	}
-    });
-    const fetchedData = await response.json();
-joke.textContent = fetchedData.body.setup;
-joke2.textContent = fetchedData.body.punchline;
-jokesCount++
+//   try {
+//     const response = await fetch("https://jokes-always.p.rapidapi.com/common", {
+//       "method": "GET",
+//      headers: {
+// 		'X-RapidAPI-Key': '3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3',
+// 		'X-RapidAPI-Host': 'jokes-always.p.rapidapi.com'
+// 	}
+//     });
+//     const fetchedData = await response.json();
+//     console.log(fetchedData);
+//     console.log('here');
+// joke.textContent = fetchedData.body.setup;
+// joke2.textContent = fetchedData.body.punchline;
+// jokesCount++
  
-if(jokesCount >= 5) {
-  joke.textContent = 'Enough jokes!'
-  joke2.textContent = 'Go back to work!';
+// if(jokesCount >= 5) {
+//   joke.textContent = 'Enough jokes!'
+//   joke2.textContent = 'Go back to work!';
+// }
+
+//   } catch (err) {
+//     joke.textContent = 'No jokes today!'
+//     joke2.textContent = 'Go back to work!';
+
+//   }
+
+
+
+const url = 'https://jokes-always.p.rapidapi.com/common';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3',
+		'x-rapidapi-host': 'jokes-always.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+
+  joke.textContent = result.data;
+
+	// console.log(result);
+} catch (error) {
+	console.error(error);
+  joke.textContent = 'No jokes today! Go back to work!';
+  // joke2.textContent = 'Go back to work!';
 }
-
-  } catch (err) {
-    joke.textContent = 'No jokes today!'
-    joke2.textContent = 'Go back to work!';
-
-  }
 };
 
 getTodayJoke();

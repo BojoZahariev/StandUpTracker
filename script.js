@@ -30,10 +30,10 @@ getTodayJoke = async () => {
   try {
     const response = await fetch("https://dad-jokes.p.rapidapi.com/random/joke/png", {
       "method": "GET",
-      "headers": {
-        "x-rapidapi-key": "3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3",
-        "x-rapidapi-host": "dad-jokes.p.rapidapi.com"
-      }
+     headers: {
+		'X-RapidAPI-Key': '3e8f7f12d1msh89e2f6e4b63ed11p190647jsn11252f6994a3',
+		'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
+	}
     });
     const fetchedData = await response.json();
 joke.textContent = fetchedData.body.setup;
